@@ -14,7 +14,7 @@ On a machine without development dependencies, run `node scripts/test.mjs` again
 
 ## Public beta gates
 
-- Real Windows + PowerShell test run and Ubuntu run; Node 22 and 24 matrix green.
+- [x] GitHub-hosted Windows 2025 + Ubuntu 24.04; Node 22 and 24 matrix green ([main run #39941328349](https://github.com/rocktan1996-debug/quickstartguard/actions/runs/39941328349)). Individual Windows hardware coverage remains to be established.
 - Clean `npm ci --ignore-scripts` from the locked versions; online dependency review/audit.
 - Reproducible upstream parser bundling and license/SBOM review; preserve the YAML security test.
 - Review pinned GitHub Actions revisions against the then-current security advisories; Dependabot enabled.
