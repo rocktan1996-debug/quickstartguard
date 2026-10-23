@@ -33,3 +33,14 @@ GitHub Actions：配置已生成，但没有访问你的仓库创建远程运行
 ## 结论
 
 这是**可本地运行并已在 Linux 验证的 Alpha**，不是“所有平台已经验收”的正式生产版。公开 beta 前的门槛见 [RELEASE.md](RELEASE.md)，接手事项见 [CODEX_HANDOFF.md](CODEX_HANDOFF.md)。
+
+## 公开仓库后追加验证：2026-10-23
+
+[GitHub Actions 主分支运行 #39941328349](https://github.com/rocktan1996-debug/quickstartguard/actions/runs/39941328349) 已完成，以下四个工作均为 **success**：
+
+- `test (ubuntu-24.04, 22)`
+- `test (ubuntu-24.04, 24)`
+- `test (windows-2025, 22)`
+- `test (windows-2025, 24)`
+
+这是在上传并配置 GitHub Actions 之后取得的新证据；上文“Windows 未执行”仅描述**最初本地交付**的测试条件，并非当前仓库的全部验证状态。当前仍未完成维护者个人 Windows 电脑测试、联网完整安全审计、第三方使用验证或 npm 正式发布。
