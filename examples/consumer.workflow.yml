@@ -1,7 +1,15 @@
-# TEMPLATE ONLY. Replace YOUR_OWNER and FULL_REVIEWED_COMMIT_SHA before enabling.
-# This template consumes the repository build; it does not pretend an npm release exists.
-name: README quickstarts
-on: [push, pull_request]
+# Preview workflow for a trusted, opt-in pilot. Copy this into the consumer repo.
+# Uses an immutable revision with passing Linux/Windows CI.
+# Review README scripts before enabling. QSG executes real commands; it is NOT a sandbox.
+# Do not run with secrets, a self-hosted runner, or pull_request_target.
+name: README quickstarts (pilot)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'README.md'
+      - 'qsg.yml'
+      - '.github/workflows/quickstart.yml'
 permissions:
   contents: read
 jobs:
@@ -19,12 +27,14 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '22'
-      - name: Check out a reviewed QSG revision separately
+      - name: Check out reviewed QuickstartGuard revision
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
-          repository: YOUR_OWNER/quickstartguard
-          ref: FULL_REVIEWED_COMMIT_SHA
+          repository: rocktan1996-debug/quickstartguard
+          ref: 84dec79ef88838e371aa8b276a71fe8a12be51e5
           path: .tools/quickstartguard
           persist-credentials: false
-      - run: node .tools/quickstartguard/dist/cli.js validate --config qsg.yml
-      - run: node .tools/quickstartguard/dist/cli.js run --config qsg.yml --execute --github
+      - name: Validate config (never executes commands)
+        run: node .tools/quickstartguard/dist/cli.js validate --config qsg.yml
+      - name: Execute selected README tests (trusted code only)
+        run: node .tools/quickstartguard/dist/cli.js run --config qsg.yml --execute --github
