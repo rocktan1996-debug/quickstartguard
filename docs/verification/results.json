@@ -1,0 +1,24 @@
+{
+  "tests": 118,
+  "pass": 118,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "todo": 0,
+  "version": "0.1.0-alpha.1",
+  "recordedAt": "2026-10-23T06:25:34.941780+00:00",
+  "runtime": {
+    "os": "Linux",
+    "architecture": "x86_64",
+    "node": "v22.16.0",
+    "typescript": "5.8.3",
+    "nodeTypes": "22.19.7"
+  },
+  "windowsExecuted": false,
+  "githubCiExecuted": false,
+  "onlineDependencyAuditExecuted": false,
+  "cleanRegistryDependencyInstallExecuted": false,
+  "localTarballInstallTest": "passed (offline, no runtime dependencies)",
+  "cleanOfflineLockedDependencyInstallExecuted": true,
+  "buildVerifiedAfterCleanLockedInstall": true
+}

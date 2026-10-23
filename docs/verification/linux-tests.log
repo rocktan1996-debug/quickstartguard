@@ -1,0 +1,736 @@
+
+> quickstartguard@0.1.0-alpha.1 check
+> npm run verify:vendor && npm run build && npm test
+
+
+> quickstartguard@0.1.0-alpha.1 verify:vendor
+> node scripts/verify-vendor.mjs
+
+Verified js-yaml.cjs
+Verified marked.cjs
+
+> quickstartguard@0.1.0-alpha.1 build
+> tsc -p tsconfig.json
+
+
+> quickstartguard@0.1.0-alpha.1 test
+> node scripts/test.mjs
+
+TAP version 13
+# Subtest: help and version work without a config
+ok 1 - help and version work without a config
+  ---
+  duration_ms: 404.263469
+  type: 'test'
+  ...
+# Subtest: unknown command and flag return 2
+ok 2 - unknown command and flag return 2
+  ---
+  duration_ms: 235.061931
+  type: 'test'
+  ...
+# Subtest: run refuses to execute without consent
+ok 3 - run refuses to execute without consent
+  ---
+  duration_ms: 328.568413
+  type: 'test'
+  ...
+# Subtest: validate does not execute commands
+ok 4 - validate does not execute commands
+  ---
+  duration_ms: 428.759064
+  type: 'test'
+  ...
+# Subtest: validate rejects execution flags
+ok 5 - validate rejects execution flags
+  ---
+  duration_ms: 273.244751
+  type: 'test'
+  ...
+# Subtest: successful real command returns 0 and creates reports
+ok 6 - successful real command returns 0 and creates reports
+  ---
+  duration_ms: 288.634128
+  type: 'test'
+  ...
+# Subtest: expected output mismatch returns 1
+ok 7 - expected output mismatch returns 1
+  ---
+  duration_ms: 382.827053
+  type: 'test'
+  ...
+# Subtest: nonzero process returns failure
+ok 8 - nonzero process returns failure
+  ---
+  duration_ms: 442.077443
+  type: 'test'
+  ...
+# Subtest: explicit expected nonzero process passes
+ok 9 - explicit expected nonzero process passes
+  ---
+  duration_ms: 281.482826
+  type: 'test'
+  ...
+# Subtest: intermediate native failure cannot be hidden by later successful command
+ok 10 - intermediate native failure cannot be hidden by later successful command
+  ---
+  duration_ms: 232.849942
+  type: 'test'
+  ...
+# Subtest: missing native command fails
+ok 11 - missing native command fails
+  ---
+  duration_ms: 172.034899
+  type: 'test'
+  ...
+# Subtest: timeout kills command and reports timeout
+ok 12 - timeout kills command and reports timeout
+  ---
+  duration_ms: 1213.399941
+  type: 'test'
+  ...
+# Subtest: output flood is bounded and fails
+ok 13 - output flood is bounded and fails
+  ---
+  duration_ms: 294.053964
+  type: 'test'
+  ...
+# Subtest: stderr positive and negative assertions execute
+ok 14 - stderr positive and negative assertions execute
+  ---
+  duration_ms: 241.436424
+  type: 'test'
+  ...
+# Subtest: negative stdout assertion detects forbidden string
+ok 15 - negative stdout assertion detects forbidden string
+  ---
+  duration_ms: 236.255482
+  type: 'test'
+  ...
+# Subtest: environment secrets and GitHub files are absent from child
+ok 16 - environment secrets and GitHub files are absent from child
+  ---
+  duration_ms: 267.944146
+  type: 'test'
+  ...
+# Subtest: explicit pass-env is available but default output remains hidden
+ok 17 - explicit pass-env is available but default output remains hidden
+  ---
+  duration_ms: 299.873377
+  type: 'test'
+  ...
+# Subtest: verbose stdout does not inject GitHub commands
+ok 18 - verbose stdout does not inject GitHub commands
+  ---
+  duration_ms: 311.758936
+  type: 'test'
+  ...
+# Subtest: annotations and GitHub summary reflect failed source line
+ok 19 - annotations and GitHub summary reflect failed source line
+  ---
+  duration_ms: 274.519055
+  type: 'test'
+  ...
+# Subtest: invalid JSON output path is rejected BEFORE commands run
+ok 20 - invalid JSON output path is rejected BEFORE commands run
+  ---
+  duration_ms: 190.162225
+  type: 'test'
+  ...
+# Subtest: wrong platform never reports zero checks as success
+ok 21 - wrong platform never reports zero checks as success
+  ---
+  duration_ms: 279.031545
+  type: 'test'
+  ...
+# Subtest: init is usable and never overwrites an existing file
+ok 22 - init is usable and never overwrites an existing file
+  ---
+  duration_ms: 739.656352
+  type: 'test'
+  ...
+# Subtest: unmarked block never executes alongside selected block
+ok 23 - unmarked block never executes alongside selected block
+  ---
+  duration_ms: 261.82251
+  type: 'test'
+  ...
+# Subtest: repository demo-valid passes and demo-broken fails on host platform
+ok 24 - repository demo-valid passes and demo-broken fails on host platform
+  ---
+  duration_ms: 511.785735
+  type: 'test'
+  ...
+# Subtest: SIGINT interrupts a long-running check and returns 130
+ok 25 - SIGINT interrupts a long-running check and returns 130
+  ---
+  duration_ms: 265.813062
+  type: 'test'
+  ...
+# Subtest: timeout also stops a normal descendant process group on Linux
+ok 26 - timeout also stops a normal descendant process group on Linux
+  ---
+  duration_ms: 2787.071179
+  type: 'test'
+  ...
+# Subtest: all selected checks run and failures are aggregated
+ok 27 - all selected checks run and failures are aggregated
+  ---
+  duration_ms: 538.997952
+  type: 'test'
+  ...
+# Subtest: marked but unconfigured block warns and does not run
+ok 28 - marked but unconfigured block warns and does not run
+  ---
+  duration_ms: 340.847865
+  type: 'test'
+  ...
+# Subtest: invalid UTF-8 input is rejected without execution
+ok 29 - invalid UTF-8 input is rejected without execution
+  ---
+  duration_ms: 171.295369
+  type: 'test'
+  ...
+# Subtest: JSON inclusion redacts a known token without corrupting JSON
+ok 30 - JSON inclusion redacts a known token without corrupting JSON
+  ---
+  duration_ms: 237.848924
+  type: 'test'
+  ...
+# Subtest: init collision does not partially overwrite project
+ok 31 - init collision does not partially overwrite project
+  ---
+  duration_ms: 84.994014
+  type: 'test'
+  ...
+# Subtest: YAML config loads with defaults and assertions
+ok 32 - YAML config loads with defaults and assertions
+  ---
+  duration_ms: 5.05119
+  type: 'test'
+  ...
+# Subtest: JSON is accepted as valid YAML
+ok 33 - JSON is accepted as valid YAML
+  ---
+  duration_ms: 0.667985
+  type: 'test'
+  ...
+# Subtest: UTF-8 BOM and CRLF configuration accepted
+ok 34 - UTF-8 BOM and CRLF configuration accepted
+  ---
+  duration_ms: 0.347751
+  type: 'test'
+  ...
+# Subtest: reject empty config
+ok 35 - reject empty config
+  ---
+  duration_ms: 0.450276
+  type: 'test'
+  ...
+# Subtest: reject array config
+ok 36 - reject array config
+  ---
+  duration_ms: 1.12021
+  type: 'test'
+  ...
+# Subtest: reject unknown root
+ok 37 - reject unknown root
+  ---
+  duration_ms: 0.1171
+  type: 'test'
+  ...
+# Subtest: reject unsupported version
+ok 38 - reject unsupported version
+  ---
+  duration_ms: 0.077273
+  type: 'test'
+  ...
+# Subtest: reject zero checks
+ok 39 - reject zero checks
+  ---
+  duration_ms: 0.070133
+  type: 'test'
+  ...
+# Subtest: reject duplicate IDs
+ok 40 - reject duplicate IDs
+  ---
+  duration_ms: 0.525924
+  type: 'test'
+  ...
+# Subtest: reject invalid ID
+ok 41 - reject invalid ID
+  ---
+  duration_ms: 0.341946
+  type: 'test'
+  ...
+# Subtest: reject invalid platform
+ok 42 - reject invalid platform
+  ---
+  duration_ms: 0.130432
+  type: 'test'
+  ...
+# Subtest: reject shell mismatch
+ok 43 - reject shell mismatch
+  ---
+  duration_ms: 0.107152
+  type: 'test'
+  ...
+# Subtest: reject unknown check field
+ok 44 - reject unknown check field
+  ---
+  duration_ms: 0.060838
+  type: 'test'
+  ...
+# Subtest: reject absolute path
+ok 45 - reject absolute path
+  ---
+  duration_ms: 0.108119
+  type: 'test'
+  ...
+# Subtest: reject Windows absolute path
+ok 46 - reject Windows absolute path
+  ---
+  duration_ms: 0.118192
+  type: 'test'
+  ...
+# Subtest: reject Windows drive relative path
+ok 47 - reject Windows drive relative path
+  ---
+  duration_ms: 0.068113
+  type: 'test'
+  ...
+# Subtest: reject parent path
+ok 48 - reject parent path
+  ---
+  duration_ms: 0.059114
+  type: 'test'
+  ...
+# Subtest: reject backslash path
+ok 49 - reject backslash path
+  ---
+  duration_ms: 0.047694
+  type: 'test'
+  ...
+# Subtest: reject non-markdown file
+ok 50 - reject non-markdown file
+  ---
+  duration_ms: 0.164432
+  type: 'test'
+  ...
+# Subtest: reject cwd escape
+ok 51 - reject cwd escape
+  ---
+  duration_ms: 0.091661
+  type: 'test'
+  ...
+# Subtest: reject zero timeout
+ok 52 - reject zero timeout
+  ---
+  duration_ms: 0.067848
+  type: 'test'
+  ...
+# Subtest: reject timeout beyond cap
+ok 53 - reject timeout beyond cap
+  ---
+  duration_ms: 0.081508
+  type: 'test'
+  ...
+# Subtest: reject fraction timeout
+ok 54 - reject fraction timeout
+  ---
+  duration_ms: 0.048163
+  type: 'test'
+  ...
+# Subtest: reject string timeout
+ok 55 - reject string timeout
+  ---
+  duration_ms: 0.045932
+  type: 'test'
+  ...
+# Subtest: reject bad exit code
+ok 56 - reject bad exit code
+  ---
+  duration_ms: 0.051111
+  type: 'test'
+  ...
+# Subtest: reject empty assertion list
+ok 57 - reject empty assertion list
+  ---
+  duration_ms: 0.0526
+  type: 'test'
+  ...
+# Subtest: reject non-string assertion
+ok 58 - reject non-string assertion
+  ---
+  duration_ms: 0.04774
+  type: 'test'
+  ...
+# Subtest: reject unknown assertion
+ok 59 - reject unknown assertion
+  ---
+  duration_ms: 0.043157
+  type: 'test'
+  ...
+# Subtest: duplicate YAML keys rejected
+ok 60 - duplicate YAML keys rejected
+  ---
+  duration_ms: 1.013526
+  type: 'test'
+  ...
+# Subtest: unknown YAML type tags rejected
+ok 61 - unknown YAML type tags rejected
+  ---
+  duration_ms: 0.82966
+  type: 'test'
+  ...
+# Subtest: anchors and aliases rejected
+ok 62 - anchors and aliases rejected
+  ---
+  duration_ms: 0.196796
+  type: 'test'
+  ...
+# Subtest: prototype keys rejected by schema
+ok 63 - prototype keys rejected by schema
+  ---
+  duration_ms: 0.217825
+  type: 'test'
+  ...
+# Subtest: YAML merge keys disabled by restricted schema
+ok 64 - YAML merge keys disabled by restricted schema
+  ---
+  duration_ms: 0.148245
+  type: 'test'
+  ...
+# Subtest: YAML nesting bounded
+ok 65 - YAML nesting bounded
+  ---
+  duration_ms: 0.206161
+  type: 'test'
+  ...
+# Subtest: config size bounded
+ok 66 - config size bounded
+  ---
+  duration_ms: 0.123187
+  type: 'test'
+  ...
+# Subtest: upstream merge-prototype regression fixed in vendored parser
+ok 67 - upstream merge-prototype regression fixed in vendored parser
+  ---
+  duration_ms: 0.761276
+  type: 'test'
+  ...
+# Subtest: marked fence extracted with exact source lines
+ok 68 - marked fence extracted with exact source lines
+  ---
+  duration_ms: 5.976882
+  type: 'test'
+  ...
+# Subtest: unmarked block not selected
+ok 69 - unmarked block not selected
+  ---
+  duration_ms: 0.285161
+  type: 'test'
+  ...
+# Subtest: inline qsg text ignored
+ok 70 - inline qsg text ignored
+  ---
+  duration_ms: 7.851674
+  type: 'test'
+  ...
+# Subtest: HTML-commented fake block ignored
+ok 71 - HTML-commented fake block ignored
+  ---
+  duration_ms: 5.017554
+  type: 'test'
+  ...
+# Subtest: literal block inside a longer fence ignored
+ok 72 - literal block inside a longer fence ignored
+  ---
+  duration_ms: 0.299588
+  type: 'test'
+  ...
+# Subtest: CRLF line numbers preserved
+ok 73 - CRLF line numbers preserved
+  ---
+  duration_ms: 1.845946
+  type: 'test'
+  ...
+# Subtest: BOM removed without changing line numbers
+ok 74 - BOM removed without changing line numbers
+  ---
+  duration_ms: 0.679508
+  type: 'test'
+  ...
+# Subtest: tilde fence supported
+ok 75 - tilde fence supported
+  ---
+  duration_ms: 0.266889
+  type: 'test'
+  ...
+# Subtest: longer closing fence supported
+ok 76 - longer closing fence supported
+  ---
+  duration_ms: 1.246866
+  type: 'test'
+  ...
+# Subtest: multiple blocks retain correct line positions
+ok 77 - multiple blocks retain correct line positions
+  ---
+  duration_ms: 2.339516
+  type: 'test'
+  ...
+# Subtest: metadata unrelated to qsg can coexist
+ok 78 - metadata unrelated to qsg can coexist
+  ---
+  duration_ms: 0.507907
+  type: 'test'
+  ...
+# Subtest: reject duplicate IDs
+ok 79 - reject duplicate IDs
+  ---
+  duration_ms: 0.764409
+  type: 'test'
+  ...
+# Subtest: reject two markers
+ok 80 - reject two markers
+  ---
+  duration_ms: 0.108235
+  type: 'test'
+  ...
+# Subtest: reject invalid ID
+ok 81 - reject invalid ID
+  ---
+  duration_ms: 0.066672
+  type: 'test'
+  ...
+# Subtest: reject unclosed block
+ok 82 - reject unclosed block
+  ---
+  duration_ms: 0.072161
+  type: 'test'
+  ...
+# Subtest: reject empty block
+ok 83 - reject empty block
+  ---
+  duration_ms: 0.341522
+  type: 'test'
+  ...
+# Subtest: reject unsupported language
+ok 84 - reject unsupported language
+  ---
+  duration_ms: 0.121568
+  type: 'test'
+  ...
+# Subtest: reject quoted block
+ok 85 - reject quoted block
+  ---
+  duration_ms: 0.188052
+  type: 'test'
+  ...
+# Subtest: reject listed block
+ok 86 - reject listed block
+  ---
+  duration_ms: 1.240259
+  type: 'test'
+  ...
+# Subtest: reject illegal controls
+ok 87 - reject illegal controls
+  ---
+  duration_ms: 0.225666
+  type: 'test'
+  ...
+# Subtest: reject oversize document
+ok 88 - reject oversize document
+  ---
+  duration_ms: 0.966464
+  type: 'test'
+  ...
+# Subtest: reject oversize script
+ok 89 - reject oversize script
+  ---
+  duration_ms: 0.535427
+  type: 'test'
+  ...
+# Subtest: four-space indented imitation does not execute
+ok 90 - four-space indented imitation does not execute
+  ---
+  duration_ms: 0.443849
+  type: 'test'
+  ...
+# Subtest: child does not inherit parent secrets or GitHub command channels
+ok 91 - child does not inherit parent secrets or GitHub command channels
+  ---
+  duration_ms: 2.455108
+  type: 'test'
+  ...
+# Subtest: explicit extra environment pass works
+ok 92 - explicit extra environment pass works
+  ---
+  duration_ms: 0.322497
+  type: 'test'
+  ...
+# Subtest: missing explicit variable errors
+ok 93 - missing explicit variable errors
+  ---
+  duration_ms: 0.761694
+  type: 'test'
+  ...
+# Subtest: workflow and shell hooks cannot be explicitly passed
+ok 94 - workflow and shell hooks cannot be explicitly passed
+  ---
+  duration_ms: 0.197883
+  type: 'test'
+  ...
+# Subtest: secret redaction handles exact environment values
+ok 95 - secret redaction handles exact environment values
+  ---
+  duration_ms: 0.403701
+  type: 'test'
+  ...
+# Subtest: known key formats redacted without environment lookup
+ok 96 - known key formats redacted without environment lookup
+  ---
+  duration_ms: 0.199115
+  type: 'test'
+  ...
+# Subtest: workflow command injection broken even mid-line
+ok 97 - workflow command injection broken even mid-line
+  ---
+  duration_ms: 0.952368
+  type: 'test'
+  ...
+# Subtest: ANSI and carriage returns are normalised
+ok 98 - ANSI and carriage returns are normalised
+  ---
+  duration_ms: 0.770486
+  type: 'test'
+  ...
+# Subtest: output limit retains only bounded bytes
+ok 99 - output limit retains only bounded bytes
+  ---
+  duration_ms: 2.744019
+  type: 'test'
+  ...
+# Subtest: Bash fail-fast wrapper contains pipefail
+ok 100 - Bash fail-fast wrapper contains pipefail
+  ---
+  duration_ms: 0.515024
+  type: 'test'
+  ...
+# Subtest: PowerShell wrapper catches native failures and stops
+ok 101 - PowerShell wrapper catches native failures and stops
+  ---
+  duration_ms: 0.195287
+  type: 'test'
+  ...
+# Subtest: normal expected nonzero exit can pass
+ok 102 - normal expected nonzero exit can pass
+  ---
+  duration_ms: 0.357448
+  type: 'test'
+  ...
+# Subtest: truncated output is NEVER a pass, including negative assertions
+ok 103 - truncated output is NEVER a pass, including negative assertions
+  ---
+  duration_ms: 0.13361
+  type: 'test'
+  ...
+# Subtest: normalise ANSI and CRLF before assertion
+ok 104 - normalise ANSI and CRLF before assertion
+  ---
+  duration_ms: 0.273027
+  type: 'test'
+  ...
+# Subtest: report path cannot overwrite package.json or leave workspace
+ok 105 - report path cannot overwrite package.json or leave workspace
+  ---
+  duration_ms: 14.439108
+  type: 'test'
+  ...
+# Subtest: prefix lookalike is not inside workspace
+ok 106 - prefix lookalike is not inside workspace
+  ---
+  duration_ms: 0.176483
+  type: 'test'
+  ...
+# Subtest: report folder symlink denied
+ok 107 - report folder symlink denied
+  ---
+  duration_ms: 7.330059
+  type: 'test'
+  ...
+# Subtest: out-of-root source symlink denied
+ok 108 - out-of-root source symlink denied
+  ---
+  duration_ms: 10.780916
+  type: 'test'
+  ...
+# Subtest: missing Markdown source fails before execution
+ok 109 - missing Markdown source fails before execution
+  ---
+  duration_ms: 7.934964
+  type: 'test'
+  ...
+# Subtest: missing block fails before execution
+ok 110 - missing block fails before execution
+  ---
+  duration_ms: 8.651079
+  type: 'test'
+  ...
+# Subtest: zero platform matches fails rather than green
+ok 111 - zero platform matches fails rather than green
+  ---
+  duration_ms: 6.763465
+  type: 'test'
+  ...
+# Subtest: unknown selection fails
+ok 112 - unknown selection fails
+  ---
+  duration_ms: 15.774486
+  type: 'test'
+  ...
+# Subtest: annotation escapes line breaks and property delimiters
+ok 113 - annotation escapes line breaks and property delimiters
+  ---
+  duration_ms: 0.703231
+  type: 'test'
+  ...
+# Subtest: summary escapes HTML and table injection
+ok 114 - summary escapes HTML and table injection
+  ---
+  duration_ms: 2.822288
+  type: 'test'
+  ...
+# Subtest: JSON excludes captured output by default
+ok 115 - JSON excludes captured output by default
+  ---
+  duration_ms: 5.446537
+  type: 'test'
+  ...
+# Subtest: JSON output can be included explicitly
+ok 116 - JSON output can be included explicitly
+  ---
+  duration_ms: 7.597711
+  type: 'test'
+  ...
+# Subtest: Markdown/config shell mismatch rejected
+ok 117 - Markdown/config shell mismatch rejected
+  ---
+  duration_ms: 11.896405
+  type: 'test'
+  ...
+# Subtest: invalid report suffix rejected
+ok 118 - invalid report suffix rejected
+  ---
+  duration_ms: 6.591046
+  type: 'test'
+  ...
+1..118
+# tests 118
+# suites 0
+# pass 118
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 13607.081689

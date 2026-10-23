@@ -1,0 +1,49 @@
+{
+  "name": "quickstartguard",
+  "version": "0.1.0-alpha.1",
+  "description": "Opt-in README quickstart regression checks for Bash and PowerShell.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "qsg": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "vendor",
+    "docs",
+    "examples",
+    "scripts/verify-vendor.mjs",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE",
+    "SECURITY.md",
+    "CHANGELOG.md",
+    "src",
+    "fixtures/**/README.md",
+    "fixtures/**/qsg.yml",
+    "fixtures/**/scripts/*.mjs"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "node scripts/test.mjs",
+    "verify:vendor": "node scripts/verify-vendor.mjs",
+    "check": "npm run verify:vendor && npm run build && npm test",
+    "demo": "node dist/cli.js run --config fixtures/demo-valid/qsg.yml --execute"
+  },
+  "devDependencies": {
+    "typescript": "5.8.3",
+    "@types/node": "22.19.7"
+  },
+  "keywords": [
+    "readme",
+    "documentation",
+    "ci",
+    "quickstart",
+    "windows",
+    "powershell"
+  ]
+}
