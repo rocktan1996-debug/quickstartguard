@@ -15,3 +15,12 @@ Collect real release notes; installation regressions caught and fixed; external 
 Before applying, re-check the current first-party programme requirements and your subscription/activation eligibility. There is no guaranteed number of stars, commits or weeks that ensures selection. Neither this CLI nor a successful test run grants six months of Pro automatically.
 
 The earlier planning document contains an application outline. Use actual evidence only; don't fill in the hypothetical example numbers. This release does not submit an application.
+
+## 2026-10-24 — Verified first public pre-release
+
+- Release: https://github.com/rocktan1996-debug/quickstartguard/releases/tag/v0.1.0-alpha.1
+- GitHub confirms the tag `v0.1.0-alpha.1`, prerelease=true, and published_at `2026-10-23T17:32:44Z` (2026-10-24 01:32:44 Beijing time).
+- Source commit: `05256ffc265ee2fc6b4b5a0b10a021c671640463`.
+- CI evidence before release: https://github.com/rocktan1996-debug/quickstartguard/actions/runs/39987926136 (main workflow success). These are hosted CI checks, not independent user adoption.
+- The Release page offers GitHub-generated source archives only, not a standalone installer or npm registry package.
+- Independent adoption and third-party maintenance evidence: **none confirmed yet**.
