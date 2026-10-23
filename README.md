@@ -125,7 +125,7 @@ npm run check
 
 `npm test` runs the delivered compiled CLI; **after editing `src/`, always build first or use `npm run check`**. TypeScript and `@types/node` are dev-only. Runtime libraries, versions, backport and license details are in [vendor/README.md](vendor/README.md).
 
-The package is deliberately `private: true` to prevent an accidental public publish. Local `npm pack` and local installation work. Name ownership, online dependency audit, fresh dependency installation, Windows CI and maintainer review are release gates. See [release checklist](docs/RELEASE.md).
+The package is deliberately `private: true` to prevent accidental **npm registry** publication. Local `npm pack` and local installation work. The GitHub Actions matrix on `main` has passed on Ubuntu 24.04 and Windows 2025 with Node.js 22 and 24 ([run evidence](https://github.com/rocktan1996-debug/quickstartguard/actions/runs/39941328349)). This is hosted-runner evidence, not a guarantee for every Windows machine or a full security audit. Name ownership, online dependency audit, fresh dependency installation, and a human-maintainer usability test remain beta/registry release gates. See [release checklist](docs/RELEASE.md) and [public alpha notes](docs/RELEASE_NOTES_v0.1.0-alpha.1.md).
 
 ## Self-check examples used by this repo
 
