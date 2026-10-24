@@ -80,6 +80,23 @@ jobs:
         run: node .pilot-qsg/dist/cli.js validate --config pilots/x424/qsg.yml
       - name: Execute real synthetic quickstart from marked documentation
         run: node .pilot-qsg/dist/cli.js run --config pilots/x424/qsg.yml --execute --github --verbose --json-out .qsg/results.json --summary-out .qsg/summary.md
+      - name: Check candidate installation prerequisite
+        id: candidate-prerequisite
+        if: ${{ !cancelled() && runner.os == 'Windows' }}
+        shell: pwsh
+        run: |
+          $ready = $false
+          $reportPath = 'pilots/x424/.qsg/results.json'
+          if (Test-Path $reportPath) {
+            $report = Get-Content -Raw $reportPath | ConvertFrom-Json
+            $installed = @($report.checks | Where-Object { $_.id -eq 'x424-install-windows' -and $_.status -eq 'pass' -and $_.exitCode -eq 0 })
+            $ready = $report.platform -eq 'win32' -and $installed.Count -eq 1
+          }
+          "ready=$($ready.ToString().ToLowerInvariant())" >> $env:GITHUB_OUTPUT
+          if (-not $ready) { Write-Output 'Candidate INCONCLUSIVE: successful Windows installation was not established; skipping launcher.' }
+      - name: Run separate Windows candidate without changing upstream
+        if: ${{ !cancelled() && runner.os == 'Windows' && steps.candidate-prerequisite.outputs.ready == 'true' }}
+        run: node .pilot-qsg/dist/cli.js run --config pilots/x424/qsg-candidate.yml --execute --github --verbose --json-out .qsg/candidate-results.json --summary-out .qsg/candidate-summary.md
       - name: Confirm upstream tracked source was not modified
         if: always()
         run: git -C pilots/x424/upstream diff --exit-code

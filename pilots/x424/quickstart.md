@@ -44,3 +44,19 @@ Success requires real exit 0, client status 201 and the upstream completion
 banner. HTTP output is produced by the local synthetic server/client, not a
 mock printer. A failure in upstream pnpm.cmd spawning must remain a failure;
 no upstream scripts, authentication or production code are patched by this pilot.
+
+## Separate Windows candidate diagnostic
+
+The unchanged command above reproduced spawn EINVAL on Windows. This independent
+launcher starts exactly the same pinned synthetic server and client using
+`node --import tsx`, not a .cmd executable. It does not modify upstream files.
+Its result is separate: even if it passes, the original pnpm quickstart remains
+failed on the tested Windows combination. Run only after installation succeeds.
+
+```powershell qsg=x424-candidate-windows
+node ../candidate-run-quickstart.mjs
+```
+
+The candidate has a 20-second server-readiness bound and explicitly stops its
+server on exit; QSG adds a 120-second command timeout and best-effort process-tree
+cleanup. It is still not a sandbox or a production identity verification test.
