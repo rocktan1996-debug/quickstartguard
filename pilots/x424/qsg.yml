@@ -1,0 +1,36 @@
+schemaVersion: 1
+checks:
+  - id: x424-install-linux
+    file: quickstart.md
+    platform: linux
+    shell: bash
+    cwd: upstream
+    timeoutSeconds: 300
+    expect:
+      exitCode: 0
+  - id: x424-run-linux
+    file: quickstart.md
+    platform: linux
+    shell: bash
+    cwd: upstream
+    timeoutSeconds: 120
+    expect:
+      exitCode: 0
+      stdoutContains: ['"status": 201', 'x424 quickstart passed: 424 challenge → proof → bound retry → 201']
+  - id: x424-install-windows
+    file: quickstart.md
+    platform: win32
+    shell: pwsh
+    cwd: upstream
+    timeoutSeconds: 300
+    expect:
+      exitCode: 0
+  - id: x424-run-windows
+    file: quickstart.md
+    platform: win32
+    shell: pwsh
+    cwd: upstream
+    timeoutSeconds: 120
+    expect:
+      exitCode: 0
+      stdoutContains: ['"status": 201', 'x424 quickstart passed: 424 challenge → proof → bound retry → 201']
