@@ -40,7 +40,8 @@ No upstream Issue, PR or contact is authorized by this work.
 ## Current state
 
 The original baseline has now been run on both hosted platforms; see the
-results below. The separate candidate still requires its own new manual run.
+results below. The separate Windows candidate has also been hosted-verified; see the final
+candidate result below.
 Do not infer candidate success from the baseline or QSG unit tests.
 
 ### Local checks, 2026-10-24
@@ -83,7 +84,7 @@ this Windows combination. It is not evidence that every Windows setup fails.
 The Node documentation explains that Windows .cmd files require a command
 interpreter; this candidate avoids introducing a shell instead.
 
-## Independent Windows candidate (not yet hosted-verified)
+## Independent Windows candidate
 
 `candidate-run-quickstart.mjs` starts the same unmodified pinned local-stack.ts
 and scripted-client.ts using `process.execPath` with `--import tsx`. It changes
@@ -100,9 +101,9 @@ even if the candidate succeeds. A candidate pass would show only that this
 launcher can exercise the synthetic flow, not that the documented upstream
 `pnpm quickstart` is fixed or that x424 has adopted QSG.
 
-After committing, a **new manual dispatch of the new branch SHA** is necessary.
-Re-running an old workflow run reuses its old commit and cannot validate this
-candidate. An upstream script fix, pnpm check, maintainer agreement and any
+The candidate was verified by a **new manual dispatch of its exact branch SHA**,
+recorded below. Re-running an old workflow run reuses its old commit and cannot
+validate newer candidate code. An upstream script fix, pnpm check, maintainer agreement and any
 integration PR remain separate work requiring the appropriate scope/approval.
 
 ### Local candidate verification, 2026-10-24
@@ -117,3 +118,40 @@ actual `"status": 201` and `HUMAN-PROOF accepted`, exit 0, in 784ms on Linux /
 Node 24.22.1. The server process exited through the launcher's awaited cleanup.
 This is a Linux functional check, not Windows candidate acceptance. Candidate
 syntax, both committed QSG configs and workflow YAML were also validated.
+
+## Final candidate result: 2026-10-24
+
+Manual [run #26 / 40107432530](https://github.com/rocktan1996-debug/quickstartguard/actions/runs/40107432530)
+executed **55bb16c9d8d721830edfb696f8a4d3c76114aa4c** and is completed.
+This later documentation-only commit does not change the tested code or claim
+that a new pilot execution occurred.
+
+- [Linux baseline job](https://github.com/rocktan1996-debug/quickstartguard/actions/runs/40107432530/job/120911923407):
+  installation PASS (3818ms), unchanged upstream quickstart PASS (2472ms).
+  Actual client output: `"status": 201`, `HUMAN-PROOF accepted`, followed by
+  the upstream completion banner. Two checks executed and passed.
+- [Windows baseline and candidate job](https://github.com/rocktan1996-debug/quickstartguard/actions/runs/40107432530/job/120911923754):
+  installation PASS; original upstream `pnpm quickstart` still FAIL with
+  `spawn EINVAL`. The installation prerequisite gate passed.
+- The separate **Windows candidate PASS** took 1723ms. Its QSG report states
+  `1 configured; 1 executed; 1 passed; 0 failed; 0 errors; 0 skipped.`
+  The actual synthetic server announced readiness, and the original client
+  returned `"status": 201` with `HUMAN-PROOF accepted`. The launcher printed
+  `x424 candidate launcher passed: synthetic HTTP 201 (not upstream pnpm quickstart)`
+  and exited successfully, including awaited server cleanup.
+- Windows environment: Server 2025 / 10.0.26100, PowerShell 7.6.7,
+  Node 22.22.0, pnpm 9.12.0. Upstream and QSG source pins remain those above.
+- Both upstream tracked-source checks passed. All four ordinary QSG self-test
+  matrix jobs passed. These self-tests are separate from the x424 evidence.
+
+The overall run is deliberately **failure**, because the original Windows
+baseline remains broken and is not hidden with continue-on-error. This is not a
+failure of the separate candidate. No additional dispatch is necessary merely
+to turn the overall badge green.
+
+Conclusion: QSG exercised real Linux and Windows synthetic HTTP flows and
+localized a reproducible Windows launcher problem. The Windows success belongs
+to the independent candidate, not the unchanged documented upstream command.
+Upstream source, protocol and authentication remain untouched. No upstream PR,
+maintainer contact, merge or official adoption has occurred. A proposed upstream
+launcher fix and full `pnpm check` acceptance are still separate future work.
