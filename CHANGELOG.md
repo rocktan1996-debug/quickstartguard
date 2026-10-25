@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Reject report destinations that are directories or have non-directory parents before executing README commands. Preserve regular-file overwrite behavior and symlink protections. See the [2026-10-25 maintenance record](docs/maintenance/2026-10-25-report-path-preflight.md).
+
 ## 0.1.0-alpha.1 — 2026-10-23
 
 First runnable local alpha. Added explicit Markdown selection, strict YAML/config checks, bounded parsing worker, Linux Bash and Windows PowerShell runners, opt-in execution, literal assertions, timeout/output bounds, filtered environment, console/JSON/Markdown/GitHub reports, starter generator, CLI integration tests and success/failure fixtures.

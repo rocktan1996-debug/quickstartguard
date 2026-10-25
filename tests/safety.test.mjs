@@ -72,3 +72,12 @@ test('Markdown/config shell mismatch rejected',async t=>{
  await assert.rejects(()=>loadProject(path.join(root,'qsg.yml')),/does not match/);
 });
 test('invalid report suffix rejected',async t=>{const root=await project(t);await assert.rejects(()=>reportPath(root,'.qsg/run.txt','.json'),/end with/);});
+
+test('existing regular report files and missing nested destinations remain valid', async t => {
+ const root = await project(t);
+ await mkdir(path.join(root, '.qsg'));
+ await writeFile(path.join(root, '.qsg/result.json'), 'old report');
+ assert.equal(await reportPath(root, '.qsg/result.json', '.json'), path.join(root, '.qsg/result.json'));
+ assert.equal(await readFile(path.join(root, '.qsg/result.json'), 'utf8'), 'old report');
+ assert.equal(await reportPath(root, '.qsg/new/nested/result.json', '.json'), path.join(root, '.qsg/new/nested/result.json'));
+});
