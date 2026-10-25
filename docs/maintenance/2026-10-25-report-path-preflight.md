@@ -31,6 +31,14 @@ behavior was changed.
 - Hosted Windows/Linux results must be read from the pull request's exact-commit
   CI checks; local Linux tests alone do not establish Windows acceptance.
 
+### Hosted test correction
+
+The first hosted run on commit `3e05ba5` passed the new CLI regressions but found
+that the direct path unit test supplied a noncanonical Windows temporary root.
+Production obtains its root through `realpath`; the unit fixture now does the
+same. No production containment check was relaxed. Final hosted acceptance is
+recorded against the final PR head, not inferred from that initial failed run.
+
 ## Boundaries
 
 This maintenance branch does not merge or modify the isolated x424 pilot. It
