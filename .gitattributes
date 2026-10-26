@@ -6,3 +6,6 @@
 *.md text eol=lf
 *.yml text eol=lf
 *.cmd text eol=crlf
+
+# License notices are byte-verified on every platform.
+vendor/licenses/*.txt text eol=lf

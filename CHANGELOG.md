@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Fail closed on incomplete or malformed vendor checksum manifests and verify the two shipped MIT notices alongside parser bytes. This is integrity coverage, not a completed dependency security audit.
+
 ## 0.1.0-alpha.1 — 2026-10-23
 
 First runnable local alpha. Added explicit Markdown selection, strict YAML/config checks, bounded parsing worker, Linux Bash and Windows PowerShell runners, opt-in execution, literal assertions, timeout/output bounds, filtered environment, console/JSON/Markdown/GitHub reports, starter generator, CLI integration tests and success/failure fixtures.

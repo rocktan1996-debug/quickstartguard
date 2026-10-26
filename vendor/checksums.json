@@ -1,4 +1,6 @@
 {
   "js-yaml.cjs": "9d2f470b66612bb2e202a4c5c7af1f8f41121917daf91d41d10e5eaf966f77b3",
-  "marked.cjs": "91e90d63828ffe48d7ab281a4005f512e6b069b01a9e3b18aa69a0b2a4f2f317"
+  "marked.cjs": "91e90d63828ffe48d7ab281a4005f512e6b069b01a9e3b18aa69a0b2a4f2f317",
+  "licenses/js-yaml-MIT.txt": "a07bc24468b9654ce76a547d47a2db282d07733b715db4c73a98bd63961f9550",
+  "licenses/marked-MIT.txt": "8e3a3f82f59a60958f56ca08f445647c32a4733dc7ca6c2c46f6eb898471ab9c"
 }
