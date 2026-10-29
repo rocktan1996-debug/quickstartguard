@@ -27,6 +27,16 @@ node dist/cli.js run --config fixtures/demo-broken/qsg.yml --execute
 
 It must return exit code 1 and point to the selected command in README. That failure is a successful demonstration of the detector, not an installation error.
 
+### What does reading the README add over a fixed smoke test?
+
+Run the [README-only drift contrast](examples/readme-drift/README.md):
+
+```text
+node examples/readme-drift/run.mjs --execute
+```
+
+In a temporary copy of a **synthetic fixture**, both checks pass initially. The runner changes only a command in that fixture's actual `README.md`: its fixed-command smoke test still passes, but QSG reads the changed README and fails at the command's source line. Restoring the README makes both pass again. No installation or network is needed. This demonstrates README binding, **not a real upstream bug, adoption, or a full upstream CI result**; tests that already execute README commands may provide the same coverage.
+
 ## Configure your own project
 
 From your project's directory, run the downloaded CLI using its full path:

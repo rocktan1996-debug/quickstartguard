@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- Added an offline, explicitly synthetic README-only drift contrast: a fixed-command
+  smoke test keeps passing after a README typo, while the README-bound QSG check
+  fails at the source line and passes after restoration. Includes regression tests,
+  temporary-copy isolation and a [maintenance record](docs/maintenance/2026-10-29-readme-only-drift.md).
+  No production CLI, dependency or workflow changes; no upstream bug/adoption claim.
+
 ## 0.1.0-alpha.1 — 2026-10-23
 
 First runnable local alpha. Added explicit Markdown selection, strict YAML/config checks, bounded parsing worker, Linux Bash and Windows PowerShell runners, opt-in execution, literal assertions, timeout/output bounds, filtered environment, console/JSON/Markdown/GitHub reports, starter generator, CLI integration tests and success/failure fixtures.

@@ -27,6 +27,16 @@ $LASTEXITCODE
 
 这里 `FAIL`、退出码 `1` 是预期结果：示例程序没有输出文档期望的 `Usage: hello`，工具应当拦住它，而不是假装测试通过。
 
+### 和固定命令测试相比，多检查了什么？
+
+运行 [README-only 对照实验](examples/readme-drift/README.md)：
+
+```text
+node examples/readme-drift/run.mjs --execute
+```
+
+这是**明确标注的人为合成实验**，不是上游真实缺陷。先确认固定命令测试与 QSG 都通过；然后只在临时副本的实际 `README.md` 中把脚本名改错：固定命令测试仍通过，直接读取 README 的 QSG 失败并指出命令行号；恢复 README 后两者再次通过。原始示例不变，临时副本自动删除，不安装依赖、不联网。它只证明文档绑定的增量行为，不代表某个上游完整 CI、社区采用或优于已经读取 README 的测试。
+
 运行自动测试：
 
 ```powershell

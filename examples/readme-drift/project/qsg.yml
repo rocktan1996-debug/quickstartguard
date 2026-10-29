@@ -1,0 +1,18 @@
+schemaVersion: 1
+checks:
+  - id: greeting-linux
+    file: README.md
+    platform: linux
+    shell: bash
+    timeoutSeconds: 5
+    expect:
+      exitCode: 0
+      stdoutContains: ["Hello, reader!"]
+  - id: greeting-windows
+    file: README.md
+    platform: win32
+    shell: pwsh
+    timeoutSeconds: 5
+    expect:
+      exitCode: 0
+      stdoutContains: ["Hello, reader!"]

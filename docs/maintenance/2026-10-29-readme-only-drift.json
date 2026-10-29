@@ -1,0 +1,97 @@
+{
+  "experiment": "synthetic-readme-only-drift",
+  "platform": "linux",
+  "nodeVersion": "v24.22.1",
+  "shellVersion": "GNU bash, version 5.2.37(1)-release (x86_64-pc-linux-gnu)",
+  "mutation": {
+    "file": "README.md",
+    "line": 8,
+    "before": "node ./scripts/hello.mjs",
+    "after": "node ./scripts/hello-typo.mjs"
+  },
+  "phases": [
+    {
+      "name": "baseline",
+      "changedFiles": [],
+      "control": {
+        "exitCode": 0,
+        "testsPassed": 1
+      },
+      "qsg": {
+        "exitCode": 0,
+        "checksExecuted": 1,
+        "passed": 1,
+        "failed": 0,
+        "errors": 0,
+        "skipped": [
+          {
+            "id": "greeting-windows",
+            "reason": "requires win32"
+          }
+        ],
+        "file": "README.md",
+        "startLine": 8,
+        "endLine": 8,
+        "status": "pass",
+        "reason": "passed"
+      }
+    },
+    {
+      "name": "readme-only-typo",
+      "changedFiles": [
+        "README.md"
+      ],
+      "control": {
+        "exitCode": 0,
+        "testsPassed": 1
+      },
+      "qsg": {
+        "exitCode": 1,
+        "checksExecuted": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "skipped": [
+          {
+            "id": "greeting-windows",
+            "reason": "requires win32"
+          }
+        ],
+        "file": "README.md",
+        "startLine": 8,
+        "endLine": 8,
+        "status": "fail",
+        "reason": "assertion_failed"
+      }
+    },
+    {
+      "name": "restored",
+      "changedFiles": [],
+      "control": {
+        "exitCode": 0,
+        "testsPassed": 1
+      },
+      "qsg": {
+        "exitCode": 0,
+        "checksExecuted": 1,
+        "passed": 1,
+        "failed": 0,
+        "errors": 0,
+        "skipped": [
+          {
+            "id": "greeting-windows",
+            "reason": "requires win32"
+          }
+        ],
+        "file": "README.md",
+        "startLine": 8,
+        "endLine": 8,
+        "status": "pass",
+        "reason": "passed"
+      }
+    }
+  ],
+  "sourceFixtureUnchanged": true,
+  "restoredInputsIdentical": true,
+  "temporaryCopyRemoved": true
+}
