@@ -15,7 +15,9 @@ Sources:
 - https://github.com/markedjs/marked/tree/v4.0.19
 - https://github.com/markedjs/marked/security
 
-Full licenses are in `licenses/`. SHA-256 values are in `checksums.json`.
+Full licenses are in `licenses/`. SHA-256 values for both parser distributions and both MIT notices are in `checksums.json`. The verifier requires exactly those four entries with lowercase SHA-256 digests; an empty or incomplete manifest is an error. It resolves files relative to the script, not the current working directory.
+
+When intentionally updating a parser or notice, review the source/license changes and update its digest. If the shipped set changes, update the required set in `scripts/verify-vendor.mjs` and its regression tests too. These checks detect accidental omissions and byte drift; a contributor able to edit both the verifier/manifest and files can change them together. They do not authenticate upstream provenance or establish that a dependency is safe.
 
 ## Before public beta
 

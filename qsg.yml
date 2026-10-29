@@ -7,7 +7,7 @@ checks:
     timeoutSeconds: 30
     expect:
       exitCode: 0
-      stdoutContains: ["0.1.0-alpha.1"]
+      stdoutContains: ["0.1.0-alpha.2"]
   - id: package-windows
     file: README.md
     platform: win32
@@ -15,4 +15,4 @@ checks:
     timeoutSeconds: 30
     expect:
       exitCode: 0
-      stdoutContains: ["0.1.0-alpha.1"]
+      stdoutContains: ["0.1.0-alpha.2"]

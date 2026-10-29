@@ -55,12 +55,19 @@ export async function reportPath(root, value, extension) {
         throw new QsgError('INVALID_REPORT_PATH', `Reports must be inside .qsg/ and end with ${extension}.`);
     }
     let cursor = root;
-    for (const part of normal.split('/')) {
+    const parts = normal.split('/');
+    for (const [index, part] of parts.entries()) {
         cursor = path.join(cursor, part);
         try {
             const info = await lstat(cursor);
             if (info.isSymbolicLink())
                 throw new QsgError('REPORT_SYMLINK', 'Report paths must not contain symbolic links.');
+            const isDestination = index === parts.length - 1;
+            if (isDestination ? !info.isFile() : !info.isDirectory()) {
+                throw new QsgError('INVALID_REPORT_PATH_TYPE', isDestination
+                    ? 'An existing report destination must be a regular file.'
+                    : 'Existing report parent paths must be directories.');
+            }
             if (!isInside(root, await realpath(cursor)))
                 throw new QsgError('REPORT_ESCAPE', 'Report path escapes workspace.');
         }

@@ -5,7 +5,7 @@ import {readFile,writeFile,access,mkdir} from 'node:fs/promises';
 import {spawn} from 'node:child_process';
 import {project,invoke,check,platform,shell,ROOT,CLI} from './helpers.mjs';
 test('help and version work without a config',()=>{
- assert.equal(invoke(ROOT,['--help']).status,0);assert.match(invoke(ROOT,['--version']).stdout,/0\.1\.0-alpha\.1/);
+ assert.equal(invoke(ROOT,['--help']).status,0);assert.match(invoke(ROOT,['--version']).stdout,/0\.1\.0-alpha\.2/);
 });
 test('unknown command and flag return 2',()=>{assert.equal(invoke(ROOT,['unknown']).status,2);assert.equal(invoke(ROOT,['validate','--bogus']).status,2);});
 test('run refuses to execute without consent',async t=>{
@@ -130,3 +130,41 @@ test('init collision does not partially overwrite project',async t=>{
  await writeFile(path.join(d,'quickstart.qsg.md'),'keep me');assert.equal(invoke(d,['init']).status,2);
  assert.equal(await readFile(path.join(d,'quickstart.qsg.md'),'utf8'),'keep me');await assert.rejects(()=>access(path.join(d,'qsg.yml')));
 });
+
+for (const [flag, report] of [['--json-out', '.qsg/results.json'], ['--summary-out', '.qsg/summary.md']]) {
+ test(`${flag} rejects an existing destination directory BEFORE commands run`, async t => {
+  const root = await project(t, {program: "import {writeFileSync} from 'node:fs';writeFileSync('ran', 'unexpected');console.log('ready');"});
+  await mkdir(path.join(root, report), {recursive: true});
+  const result = invoke(root, ['run', '--execute', flag, report]);
+  assert.equal(result.status, 2, result.stderr);
+  await assert.rejects(() => access(path.join(root, 'ran')), 'README command must not execute when the report target is a directory');
+  assert.match(result.stderr, /INVALID_REPORT_PATH_TYPE/);
+ });
+}
+
+for (const [flag, report] of [['--json-out', '.qsg/blocked/results.json'], ['--summary-out', '.qsg/blocked/summary.md']]) {
+ test(`${flag} rejects a file in the parent path BEFORE commands run`, async t => {
+  const root = await project(t, {program: "import {writeFileSync} from 'node:fs';writeFileSync('ran', 'unexpected');console.log('ready');"});
+  await mkdir(path.join(root, '.qsg'));
+  await writeFile(path.join(root, '.qsg/blocked'), 'keep parent');
+  const result = invoke(root, ['run', '--execute', flag, report]);
+  assert.equal(result.status, 2, result.stderr);
+  assert.match(result.stderr, /INVALID_REPORT_PATH_TYPE/);
+  await assert.rejects(() => access(path.join(root, 'ran')));
+  assert.equal(await readFile(path.join(root, '.qsg/blocked'), 'utf8'), 'keep parent');
+ });
+}
+
+for (const [flag, report] of [['--json-out', '.qsg/results.json'], ['--summary-out', '.qsg/summary.md']]) {
+ test(`${flag} can still overwrite an existing regular report`, async t => {
+  const root = await project(t);
+  await mkdir(path.join(root, '.qsg'));
+  await writeFile(path.join(root, report), 'old report');
+  const result = invoke(root, ['run', '--execute', flag, report]);
+  assert.equal(result.status, 0, result.stderr);
+  const text = await readFile(path.join(root, report), 'utf8');
+  assert.notEqual(text, 'old report');
+  if (flag === '--json-out') assert.equal(JSON.parse(text).passed, 1);
+  else assert.match(text, /1 passed/);
+ });
+}

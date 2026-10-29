@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.0-alpha.2 — 2026-10-29
+
+- Reject report destinations that are directories or have non-directory parents before executing README commands. Preserve regular-file overwrite behavior and symlink protections. See the [2026-10-25 maintenance record](docs/maintenance/2026-10-25-report-path-preflight.md).
+- Fail closed on incomplete or malformed vendor checksum manifests and verify the two shipped MIT notices alongside parser bytes. This is integrity coverage, not a completed dependency security audit.
+- Added an offline, explicitly synthetic README-only drift contrast: a fixed-command
+  smoke test keeps passing after a README typo, while the README-bound QSG check
+  fails at the source line and passes after restoration. Includes regression tests,
+  temporary-copy isolation and a [maintenance record](docs/maintenance/2026-10-29-readme-only-drift.md).
+  The demo itself makes no production CLI, dependency or workflow changes; no upstream bug/adoption claim.
+
 ## 0.1.0-alpha.1 — 2026-10-23
 
 First runnable local alpha. Added explicit Markdown selection, strict YAML/config checks, bounded parsing worker, Linux Bash and Windows PowerShell runners, opt-in execution, literal assertions, timeout/output bounds, filtered environment, console/JSON/Markdown/GitHub reports, starter generator, CLI integration tests and success/failure fixtures.

@@ -1,4 +1,4 @@
-export declare const VERSION = "0.1.0-alpha.1";
+export declare const VERSION = "0.1.0-alpha.2";
 export declare const ID_PATTERN: RegExp;
 export declare const MAX_CONFIG_BYTES: number;
 export declare const MAX_MARKDOWN_BYTES: number;

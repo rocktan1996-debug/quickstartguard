@@ -1,6 +1,6 @@
 {
   "name": "quickstartguard",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "description": "Opt-in README quickstart regression checks for Bash and PowerShell.",
   "type": "module",
   "private": true,
