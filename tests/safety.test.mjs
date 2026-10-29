@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import path from 'node:path';
-import {mkdtemp,writeFile,symlink,rm,mkdir,readFile} from 'node:fs/promises';
+import {mkdtemp,writeFile,symlink,rm,mkdir,readFile,realpath} from 'node:fs/promises';
 import os from 'node:os';
 import {childEnvironment,redact} from '../dist/environment.js';
 import {safeConsole,annotation,jsonReport,summaryReport} from '../dist/reporters.js';
@@ -72,3 +72,13 @@ test('Markdown/config shell mismatch rejected',async t=>{
  await assert.rejects(()=>loadProject(path.join(root,'qsg.yml')),/does not match/);
 });
 test('invalid report suffix rejected',async t=>{const root=await project(t);await assert.rejects(()=>reportPath(root,'.qsg/run.txt','.json'),/end with/);});
+
+test('existing regular report files and missing nested destinations remain valid', async t => {
+ // Match loadProject's canonical root, including Windows temporary-directory aliases.
+ const root = await realpath(await project(t));
+ await mkdir(path.join(root, '.qsg'));
+ await writeFile(path.join(root, '.qsg/result.json'), 'old report');
+ assert.equal(await reportPath(root, '.qsg/result.json', '.json'), path.join(root, '.qsg/result.json'));
+ assert.equal(await readFile(path.join(root, '.qsg/result.json'), 'utf8'), 'old report');
+ assert.equal(await reportPath(root, '.qsg/new/nested/result.json', '.json'), path.join(root, '.qsg/new/nested/result.json'));
+});

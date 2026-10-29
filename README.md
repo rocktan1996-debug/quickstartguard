@@ -2,7 +2,7 @@
 
 **Turn explicitly selected README quickstarts into regression checks.**
 
-Version: **0.1.0-alpha.1**. Working CLI, not a hosted service. English / [中文上手说明](README.zh-CN.md).
+Version: **0.1.0-alpha.2**. Working CLI, not a hosted service. English / [中文上手说明](README.zh-CN.md).
 
 This alpha checks the current checkout and current runner. It does not guarantee that published packages work on a fresh OS. It does not automatically fix commands, install PowerShell, create GitHub repositories, or publish to npm.
 
@@ -26,6 +26,16 @@ node dist/cli.js run --config fixtures/demo-broken/qsg.yml --execute
 ```
 
 It must return exit code 1 and point to the selected command in README. That failure is a successful demonstration of the detector, not an installation error.
+
+### What does reading the README add over a fixed smoke test?
+
+Run the [README-only drift contrast](examples/readme-drift/README.md):
+
+```text
+node examples/readme-drift/run.mjs --execute
+```
+
+In a temporary copy of a **synthetic fixture**, both checks pass initially. The runner changes only a command in that fixture's actual `README.md`: its fixed-command smoke test still passes, but QSG reads the changed README and fails at the command's source line. Restoring the README makes both pass again. No installation or network is needed. This demonstrates README binding, **not a real upstream bug, adoption, or a full upstream CI result**; tests that already execute README commands may provide the same coverage.
 
 ## Configure your own project
 
@@ -125,7 +135,7 @@ npm run check
 
 `npm test` runs the delivered compiled CLI; **after editing `src/`, always build first or use `npm run check`**. TypeScript and `@types/node` are dev-only. Runtime libraries, versions, backport and license details are in [vendor/README.md](vendor/README.md).
 
-The package is deliberately `private: true` to prevent accidental **npm registry** publication. Local `npm pack` and local installation work. The GitHub Actions matrix on `main` has passed on Ubuntu 24.04 and Windows 2025 with Node.js 22 and 24 ([run evidence](https://github.com/rocktan1996-debug/quickstartguard/actions/runs/39941328349)). This is hosted-runner evidence, not a guarantee for every Windows machine or a full security audit. Name ownership, online dependency audit, fresh dependency installation, and a human-maintainer usability test remain beta/registry release gates. See [release checklist](docs/RELEASE.md) and [public alpha notes](docs/RELEASE_NOTES_v0.1.0-alpha.1.md).
+The package is deliberately `private: true` to prevent accidental **npm registry** publication. Local `npm pack` and local installation work. The GitHub Actions matrix on `main` has passed on Ubuntu 24.04 and Windows 2025 with Node.js 22 and 24 ([run evidence](https://github.com/rocktan1996-debug/quickstartguard/actions/runs/39941328349)). This is hosted-runner evidence, not a guarantee for every Windows machine or a full security audit. Name ownership, online dependency audit, fresh dependency installation, and a human-maintainer usability test remain beta/registry release gates. See [release checklist](docs/RELEASE.md) and [public alpha notes](docs/RELEASE_NOTES_v0.1.0-alpha.2.md).
 
 ## Self-check examples used by this repo
 

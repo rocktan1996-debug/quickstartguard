@@ -42,6 +42,6 @@ stdin is closed; interactive quickstarts are unsupported. Each check gets a new 
 
 Only OS basics (PATH, home, temporary directories, locale, Windows system directories) are inherited. The current Node executable directory is prepended to PATH. CI=true, NO_COLOR=1 and TERM=dumb are set. Use repeatable `--pass-env NAME` for additional variables. GitHub/Actions/Runner command channels, BASH_ENV, ENV, NODE_OPTIONS, NODE_PATH, SHELLOPTS, BASHOPTS and CDPATH cannot be passed.
 
-Reports must be placed under `.qsg/` with `.json` or `.md` suffixes. Existing report files may be overwritten; no symlink components are allowed. They are written with restrictive file mode where supported. This is not an ACL or race-proof sandbox. GitHub Summary uses the parent process's `GITHUB_STEP_SUMMARY` path without passing it to the child.
+Reports must be placed under `.qsg/` with `.json` or `.md` suffixes. Existing regular report files may be overwritten; no symlink components are allowed. Existing parent components must be directories and an existing destination must be a regular file. Invalid path types are rejected before README execution with `INVALID_REPORT_PATH_TYPE`. They are written with restrictive file mode where supported. This is not an ACL or race-proof sandbox. GitHub Summary uses the parent process's `GITHUB_STEP_SUMMARY` path without passing it to the child.
 
 There is no `--platform` simulation flag: Linux cannot be used to claim a Windows test run.

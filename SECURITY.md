@@ -10,10 +10,10 @@ Use GitHub `pull_request` with `contents: read`, `persist-credentials: false`, a
 
 Raw stdout/stderr may contain secrets, commands or private paths. `--verbose` and `--include-output` are deliberate opt-ins. Known patterns/environment values are redacted only best-effort. Never assume a report is safe to post without reviewing it. Don't upload `.qsg/` automatically.
 
-Vendored parsers have recorded provenance and one upstream YAML security backport. See `vendor/README.md`; a current online dependency audit and reproducible upstream upgrade remain public-release gates.
+Vendored parsers have recorded provenance and one upstream YAML security backport. See `vendor/README.md`; a current online dependency audit and reproducible upstream upgrade remain public-beta gates (tracked in issue #8).
 
 ## Reporting
 
-There is not yet a public repository or configured private security contact. Before opening the repository to users, the maintainer must enable GitHub private vulnerability reporting and add a contact. Do not post credentials or an operational exploit against a third party. For now, notify the project owner privately using your existing contact channel.
+The public repository is https://github.com/rocktan1996-debug/quickstartguard. A private security contact and GitHub private vulnerability reporting still need maintainer verification before public beta. Do not post credentials or an operational exploit against a third party. For now, notify the project owner privately using your existing contact channel.
 
-Supported security-review target: 0.1.0-alpha.1. No production support/SLA is implied.
+Supported security-review target: 0.1.0-alpha.2. No production support/SLA is implied.

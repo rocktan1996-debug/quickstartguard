@@ -1,6 +1,6 @@
 # QuickstartGuard 第一个可运行版本
 
-**版本：0.1.0-alpha.1。已经包含源码、编译后的 CLI、测试、演示项目和 GitHub Actions 配置，不再只是方案。**
+**版本：0.1.0-alpha.2。已经包含源码、编译后的 CLI、测试、演示项目和 GitHub Actions 配置，不再只是方案。**
 
 ## Windows 上先做这几步
 
@@ -27,13 +27,23 @@ $LASTEXITCODE
 
 这里 `FAIL`、退出码 `1` 是预期结果：示例程序没有输出文档期望的 `Usage: hello`，工具应当拦住它，而不是假装测试通过。
 
+### 和固定命令测试相比，多检查了什么？
+
+运行 [README-only 对照实验](examples/readme-drift/README.md)：
+
+```text
+node examples/readme-drift/run.mjs --execute
+```
+
+这是**明确标注的人为合成实验**，不是上游真实缺陷。先确认固定命令测试与 QSG 都通过；然后只在临时副本的实际 `README.md` 中把脚本名改错：固定命令测试仍通过，直接读取 README 的 QSG 失败并指出命令行号；恢复 README 后两者再次通过。原始示例不变，临时副本自动删除，不安装依赖、不联网。它只证明文档绑定的增量行为，不代表某个上游完整 CI、社区采用或优于已经读取 README 的测试。
+
 运行自动测试：
 
 ```powershell
 node .\scripts\test.mjs
 ```
 
-**实际验证边界：本次交付在 Linux + Node 22.16.0 上测试；没有 Windows 机器或 pwsh，因此不宣称 Windows 真实执行已经通过。** Windows 执行器和自动测试已编写，CI 配置也已提供，但必须由你的 Windows 本机或首次 GitHub Actions 运行取得证据。详细结果见 `docs/VERIFICATION.md`。
+**验证边界：最初本地交付只在 Linux 上执行；之后已取得 GitHub 托管 Ubuntu 24.04 / Windows 2025 × Node 22/24 的真实 CI 通过证据。** 这不代表所有 Windows 电脑已验收。当前维护预览版的内容与验证方法见 [发布说明](docs/RELEASE_NOTES_v0.1.0-alpha.2.md)，历史证据见 `docs/VERIFICATION.md`。
 
 ## 检查自己的开源项目
 
@@ -72,7 +82,7 @@ Windows 下使用 `npm.cmd` 可避免终端误选 `npm.ps1`。不用设置全局
 
 ## 这版没有替你做的事
 
-没有创建/上传 GitHub 仓库，没有公开发布 npm 包，没有跑远程 Windows CI，没有申请任何奖励。`private: true` 防止误发到 npm；本地安装和打包不受影响。
+项目已有公开 GitHub 仓库和托管 Windows CI 记录；本版仅发布 GitHub Alpha 预览版，不发布 npm 包，也没有申请任何奖励。`private: true` 防止误发到 npm；本地安装和打包不受影响。
 
 ## 安全提醒
 
