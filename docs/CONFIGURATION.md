@@ -28,7 +28,7 @@ A block must have an explicit closing fence and non-empty body. Bash, powershell
 
 The real configuration file's parent is the root. Markdown source and cwd reject absolute paths, drive-relative paths, traversal, backslashes and symlinks that resolve outside this root. This constrains QSG's inputs; shell commands are not restricted to that root.
 
-Maximum config: 64 KiB. Maximum Markdown document: 512 KiB. Maximum individual script: 64 KiB. 1..100 configured checks. YAML nesting: 32. Input planning runs in a worker with a 5-second time limit and a 96 MiB old-generation heap limit; these limits are not a complete process memory limit.
+Maximum config: 64 KiB. Maximum Markdown document: 512 KiB. Maximum individual script: 64 KiB. Input reads retain at most the file limit plus one detection byte, including when a file grows after its metadata check; this does not provide an atomic filesystem snapshot. 1..100 configured checks. YAML nesting: 32. Input planning runs in a worker with a 5-second time limit and a 96 MiB old-generation heap limit; these limits are not a complete process memory limit.
 
 Maximum retained stdout and stderr: 64 KiB **each**. Exceeding either limit terminates the check and fails it. JSON records bytes observed; they may increase briefly while termination completes. No regex assertions means no user-configured regex execution.
 

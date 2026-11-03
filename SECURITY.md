@@ -16,4 +16,4 @@ Vendored parsers have recorded provenance and one upstream YAML security backpor
 
 The public repository is https://github.com/rocktan1996-debug/quickstartguard. A private security contact and GitHub private vulnerability reporting still need maintainer verification before public beta. Do not post credentials or an operational exploit against a third party. For now, notify the project owner privately using your existing contact channel.
 
-Supported security-review target: 0.1.0-alpha.2. No production support/SLA is implied.
+Supported security-review target: 0.1.0-alpha.3. No production support/SLA is implied.

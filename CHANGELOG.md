@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.0-alpha.3 — 2026-11-03
+
+- Bound config and Markdown reads to the configured byte limit plus one detection byte, even when a file grows after its metadata check. Check the opened file, handle short reads, preserve strict UTF-8 decoding and close file handles on success or failure.
+- Add deterministic input boundary, UTF-8, short-read and concurrent-growth regressions. No runtime dependencies or parser changes; still an opt-in GitHub Alpha preview, not a sandbox.
+
 ## 0.1.0-alpha.2 — 2026-10-29
 
 - Reject report destinations that are directories or have non-directory parents before executing README commands. Preserve regular-file overwrite behavior and symlink protections. See the [2026-10-25 maintenance record](docs/maintenance/2026-10-25-report-path-preflight.md).

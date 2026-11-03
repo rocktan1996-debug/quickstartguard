@@ -5,7 +5,7 @@ import {readFile,writeFile,access,mkdir} from 'node:fs/promises';
 import {spawn} from 'node:child_process';
 import {project,invoke,check,platform,shell,ROOT,CLI} from './helpers.mjs';
 test('help and version work without a config',()=>{
- assert.equal(invoke(ROOT,['--help']).status,0);assert.match(invoke(ROOT,['--version']).stdout,/0\.1\.0-alpha\.2/);
+ assert.equal(invoke(ROOT,['--help']).status,0);assert.match(invoke(ROOT,['--version']).stdout,/0\.1\.0-alpha\.3/);
 });
 test('unknown command and flag return 2',()=>{assert.equal(invoke(ROOT,['unknown']).status,2);assert.equal(invoke(ROOT,['validate','--bogus']).status,2);});
 test('run refuses to execute without consent',async t=>{

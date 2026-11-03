@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { lstat, mkdir, readFile, realpath, stat, writeFile } from 'node:fs/promises';
+import { lstat, mkdir, open, realpath, stat, writeFile } from 'node:fs/promises';
 import { QsgError } from './errors.js';
 export function isInside(root: string, candidate: string): boolean {
   const rel = path.relative(root, candidate);
@@ -27,10 +27,25 @@ export async function insideExisting(root: string, value: string, kind: 'file' |
 export async function readLimited(file: string, maximum: number): Promise<string> {
   const info = await stat(file);
   if (!info.isFile() || info.size > maximum) throw new QsgError('INPUT_SIZE', `Input must be a regular file <= ${maximum} bytes.`);
-  const data = await readFile(file);
-  if (data.length > maximum) throw new QsgError('INPUT_SIZE', 'Input changed while reading or exceeds the size limit.');
-  try { return new TextDecoder('utf-8', {fatal: true}).decode(data); }
-  catch { throw new QsgError('INVALID_UTF8', 'Inputs must be valid UTF-8.'); }
+  // Check and read the same open file, retaining at most the limit plus one byte.
+  // The extra byte detects growth after stat without an unbounded readFile allocation.
+  const handle = await open(file, 'r');
+  try {
+    const openedInfo = await handle.stat();
+    if (!openedInfo.isFile() || openedInfo.size > maximum) throw new QsgError('INPUT_SIZE', `Input must be a regular file <= ${maximum} bytes.`);
+    const buffer = Buffer.alloc(maximum + 1);
+    let length = 0;
+    while (length < buffer.length) {
+      const { bytesRead } = await handle.read(buffer, length, buffer.length - length, null);
+      if (bytesRead === 0) break;
+      length += bytesRead;
+    }
+    if (length > maximum) throw new QsgError('INPUT_SIZE', 'Input changed while reading or exceeds the size limit.');
+    try { return new TextDecoder('utf-8', {fatal: true}).decode(buffer.subarray(0, length)); }
+    catch { throw new QsgError('INVALID_UTF8', 'Inputs must be valid UTF-8.'); }
+  } finally {
+    await handle.close();
+  }
 }
 // Restrict generated reports to the dedicated .qsg/ folder. Never overwrite README or package.json.
 export async function reportPath(root: string, value: string, extension: '.json' | '.md'): Promise<string> {

@@ -1,6 +1,6 @@
 # QuickstartGuard 第一个可运行版本
 
-**版本：0.1.0-alpha.2。已经包含源码、编译后的 CLI、测试、演示项目和 GitHub Actions 配置，不再只是方案。**
+**版本：0.1.0-alpha.3。已经包含源码、编译后的 CLI、测试、演示项目和 GitHub Actions 配置，不再只是方案。**
 
 ## Windows 上先做这几步
 
@@ -43,7 +43,7 @@ node examples/readme-drift/run.mjs --execute
 node .\scripts\test.mjs
 ```
 
-**验证边界：最初本地交付只在 Linux 上执行；之后已取得 GitHub 托管 Ubuntu 24.04 / Windows 2025 × Node 22/24 的真实 CI 通过证据。** 这不代表所有 Windows 电脑已验收。当前维护预览版的内容与验证方法见 [发布说明](docs/RELEASE_NOTES_v0.1.0-alpha.2.md)，历史证据见 `docs/VERIFICATION.md`。
+**验证边界：最初本地交付只在 Linux 上执行；之后已取得 GitHub 托管 Ubuntu 24.04 / Windows 2025 × Node 22/24 的真实 CI 通过证据。** 这不代表所有 Windows 电脑已验收。当前维护预览版的内容与验证方法见 [发布说明](docs/RELEASE_NOTES_v0.1.0-alpha.3.md)，历史证据见 `docs/VERIFICATION.md`。
 
 ## 检查自己的开源项目
 
