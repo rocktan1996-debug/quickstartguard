@@ -35,7 +35,7 @@
     "demo": "node dist/cli.js run --config fixtures/demo-valid/qsg.yml --execute"
   },
   "devDependencies": {
-    "typescript": "5.8.3",
+    "typescript": "7.0.2",
     "@types/node": "22.19.7"
   },
   "keywords": [
